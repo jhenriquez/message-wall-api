@@ -1,0 +1,33 @@
+/*
+ * Application wide styles
+ */
+
+/*
+ * Fonts and text related
+ */
+
+.indie-flower-font {
+  font-family: 'Indie Flower', cursive;
+}
+
+#main-heading-text {
+  text-align: center;
+  font-size: 80px;
+}
+
+
+/*
+   Main Layout Style
+ */
+
+body {
+  background-image: url('/images/bg-white-texture.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#main-content-wrapper {
+  background-color: white;
+  border-radius: 15px;
+  height: 700px; /* Just a test */
+}

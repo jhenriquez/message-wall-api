@@ -1,0 +1,33 @@
+{
+  "name": "thought_well",
+  "version": "0.0.1",
+  "description": "A facebook like wall.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha --recursive specs/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhenriquez/thought_well.git"
+  },
+  "keywords": [
+    "Wall",
+    "Ideas",
+    "Conversation"
+  ],
+  "author": "Julio Henriquez <julio.m.henriquez@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jhenriquez/thought_well/issues"
+  },
+  "homepage": "https://github.com/jhenriquez/thought_well#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.3"
+  }
+}
