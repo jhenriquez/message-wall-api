@@ -21,7 +21,7 @@
  */
 
 body {
-  background-image: url('/images/bg-white-texture.jpg');
+  background-image: url('/assets/images/bg-white-texture.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }

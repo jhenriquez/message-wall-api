@@ -23,7 +23,16 @@
   },
   "homepage": "https://github.com/jhenriquez/thought_well#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "@angular/common": "^4.0.1",
+    "@angular/compiler": "^4.0.1",
+    "@angular/core": "^4.0.1",
+    "@angular/platform-browser": "^4.0.1",
+    "@angular/platform-browser-dynamic": "^4.0.1",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.3.0",
+    "zone.js": "^0.8.5"
   },
   "devDependencies": {
     "ts-loader": "^2.0.3",
