@@ -1,9 +1,12 @@
 <div id="message-container" class="common-container">
   <div class="row">
     <div class="hidden-md-down col-md-2">
-      <img src="/assets/images/avatar-default.png" class="avatar-image img-fluid" />
+      <img src="{{getGravatarUrl()}}" class="avatar-image img-fluid" />
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-10">
+    <div class="col-xs-12 col-sm-12 col-md-10 text-message-container">
+      <p class="author-name ">
+        {{ message.author.name }}
+      </p>
       <p>{{ message.text }}</p>
     </div>
   </div>

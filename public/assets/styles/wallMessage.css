@@ -1,0 +1,11 @@
+
+
+.text-message-container {
+  border: 1px solid #000;
+  border-radius: 20px;
+}
+
+.author-name {
+  font-weight: bold;
+  padding-top: 1rem;
+}

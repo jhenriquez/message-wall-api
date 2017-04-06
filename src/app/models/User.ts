@@ -1,3 +1,6 @@
+/*
+ * Contains relevant information about an application user.
+ */
 
 export class User {
   id: String;

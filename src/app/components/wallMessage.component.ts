@@ -10,6 +10,6 @@ export class WallMessageComponent {
   @Input() message: WallMessage;
 
   getGravatarUrl (): string {
-    return `https://gravatar.com/${this.message.author.emailHash}?s=200`;
+    return `https://gravatar.com/avatar/${this.message.author.emailHash}?s=200`;
   }
 }

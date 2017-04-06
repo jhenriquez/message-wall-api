@@ -6,7 +6,8 @@ import { ApplicationShellComponent } from './components/applicationShell.compone
 import { PublishMessageComponent }   from "./components/publishMessage.component";
 import { WallMessageComponent }      from "./components/wallMessage.component";
 import { NoUserComponent }           from "./components/noUser.component";
-import { LoadingComponent } from "./components/loading.component";
+import { LoadingComponent }          from "./components/loading.component";
+import { NoMessagesComponent }       from "./components/noMessages.component";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LoadingComponent } from "./components/loading.component";
     NoUserComponent,
     PublishMessageComponent,
     LoadingComponent,
-    WallMessageComponent
+    WallMessageComponent,
+    NoMessagesComponent
   ],
   bootstrap: [ ApplicationShellComponent ]
 })

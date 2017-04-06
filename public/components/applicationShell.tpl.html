@@ -4,10 +4,12 @@
   <publish-message *ngIf="canPublishMessages"></publish-message>
   <br/>
   <loading *ngIf="isLoadingMessages"></loading>
-  <wall-message
-      ngIf="messages.length"
-      *ngFor="let message of messages"
-      [message]="message"
-      >
-  </wall-message>
+  <div *ngIf="messages && messages.length">
+    <wall-message
+        *ngFor="let message of messages"
+        [message]="message"
+        >
+    </wall-message>
+  </div>
+  <no-messages *ngIf="messages && !messages.length"></no-messages>
 </div>
