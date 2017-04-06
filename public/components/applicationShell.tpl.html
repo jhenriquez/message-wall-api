@@ -1,3 +1,13 @@
 <div>
-  <user-required></user-required>
+  <loading *ngIf="isLoadingUser"></loading>
+  <user-required *ngIf="noUser"></user-required>
+  <publish-message *ngIf="canPublishMessages"></publish-message>
+  <br/>
+  <loading *ngIf="isLoadingMessages"></loading>
+  <wall-message
+      ngIf="messages.length"
+      *ngFor="let message of messages"
+      [message]="message"
+      >
+  </wall-message>
 </div>

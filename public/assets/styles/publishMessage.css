@@ -1,0 +1,13 @@
+/*
+ * Styles specific to the publishMessage component
+ */
+
+#publish-message-action {
+  margin-top: 1rem;
+}
+
+#message-box {
+  max-height: 146px;
+  min-height: 146px;
+  height: 146px;
+}

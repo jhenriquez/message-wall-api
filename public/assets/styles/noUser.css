@@ -3,9 +3,7 @@
  */
 
 #no-user-wrapper {
-  margin: 2rem;
-  padding-right: 5rem;
-  padding-left: 5rem;
+  font-family: 'Lobster Two', cursive;
 }
 
 #no-user-wrapper a {

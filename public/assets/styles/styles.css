@@ -31,3 +31,9 @@ body {
   border-radius: 15px;
   height: 700px; /* Just a test */
 }
+
+.common-container {
+  margin: 2rem;
+  padding-right: 5rem;
+  padding-left: 5rem;
+}

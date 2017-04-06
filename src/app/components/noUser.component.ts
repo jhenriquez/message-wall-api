@@ -5,5 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: '/components/noUser.tpl.html',
   styleUrls: ['assets/styles/noUser.css']
 })
-export class NoUserComponent {
-}
+export class NoUserComponent { }
