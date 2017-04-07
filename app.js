@@ -1,14 +1,20 @@
-const path = require('path');
+const path    = require('path');
 const express = require('express');
-const server = express();
+const server  = express();
 
-const morgan = require('morgan');
+const morgan     = require('morgan');
+const bodyParser = require('body-parser');
 
 /*
  * Configure logging
  */
 server.use(morgan('combined'));
 
+
+/*
+ * Configure body parsing middleware to user JSON
+ */
+server.use(bodyParser.json());
 
 /*
  * Serve contents of the "public" directory as static.
