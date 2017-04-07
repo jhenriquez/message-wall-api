@@ -22,7 +22,7 @@ describe('users/registerAccount', () => {
       password: 'password'
     };
 
-    it('expects a parameter object that with the following structure: { name: String, email: String, password: String }', () => {
+    it('expects a parameter object with the following structure: { name: String, email: String, password: String }', () => {
       return new RegisterAccount(new UserRepository()).execute()
                                   .then(PromiseHelpers.failWithMessage('Should fail for validation'))
                                   .catch(PromiseHelpers.errorShouldMatch(/parameter/));
