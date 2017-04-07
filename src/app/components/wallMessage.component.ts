@@ -4,7 +4,7 @@ import { WallMessage }      from "../models/WallMessage";
 @Component({
   selector: 'wall-message',
   templateUrl: '/components/wallMessage.tpl.html',
-  styleUrls: ['assets/styles/wallMessage.css']
+  styleUrls: ['/assets/styles/wallMessage.css']
 })
 export class WallMessageComponent {
   @Input() message: WallMessage;

@@ -4,6 +4,8 @@ const webpack = require('webpack');
 const cfg = {
   entry: {
     app: './src/main.ts',
+    signup: './src/signup.ts',
+    signin: './src/signin.ts',
     vendors: [
       '@angular/core',
       '@angular/common',
