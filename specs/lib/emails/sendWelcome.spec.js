@@ -28,6 +28,23 @@ describe('emails/sendWelcome', () => {
       return new SendWelcome().execute(testUser);
     });
 
+    it('allows for useless properties in the params object', () => {
+
+      nock('https://api.mailgun.net:443', {"encodedQueryParams":true})
+        .post(`/v3/${process.env.MAILGUN_DOMAIN}/messages`, "from=welcome%40thoughtwall.io&to=vunoridebe%4010host.top&subject=Test%20User%2C%20Welcome!&html=%3Ch1%3EWelcome%3C%2Fh1%3E%3Cp%3ETest%20User%2C%20we%20are%20glad%20to%20have%20you%20here.%20Now%20you%20can%20start%20posting.%3C%2Fp%3E")
+        .reply(200, {"id":`<20170407202418.8774.53903.7395BB4B@${process.env.MAILGUN_DOMAIN}>`,"message":"Queued. Thank you."});
+
+
+      return new SendWelcome().execute({
+        name: 'Test User',
+        email: 'vunoridebe@10host.top',
+        password: 'SomePassword',
+        another: 'useless',
+        prop: 'useless'
+      });
+
+    });
+
   });
 
 });

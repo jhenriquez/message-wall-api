@@ -7,4 +7,6 @@ export class User {
   email: String;
   emailHash: String;
   name: String;
+  createdAt: Date;
+  updatedAt: Date;
 }

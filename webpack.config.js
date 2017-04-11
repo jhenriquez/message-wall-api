@@ -12,6 +12,8 @@ const cfg = {
       '@angular/compiler',
       '@angular/platform-browser',
       '@angular/platform-browser-dynamic',
+      '@angular/forms',
+      '@angular/http',
       'zone.js',
       'reflect-metadata',
       'rxjs'

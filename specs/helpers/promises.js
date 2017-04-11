@@ -21,7 +21,7 @@ module.exports.failWithMessage = function (message) {
 module.exports.errorShouldMatch = function (regex) {
   return (err) => {
     if (!regex.test(err.message)) {
-      throw new Error(`Returned error doesn\'t match expectation. ${regex}`);
+      throw new Error(`Returned error doesn\'t match expectation. Expected: ${regex}. Returned: ${err.message}`);
     }
   };
 };

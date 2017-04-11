@@ -4,20 +4,28 @@
       <h1>Sign in to your account</h1>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control" [(ngModel)]="email">
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" class="form-control" [(ngModel)]="password">
-      </div>
-      <div class="form-group text-right">
-        <button class="btn btn-warning">Cancel</button>
-        <button class="btn btn-secondary">Log in</button>
-      </div>
+  <div class="row" *ngIf="errors.length">
+    <div class="col-xs-12 col-sm-12 cols-md-12" *ngFor="let error of errors">
+      <div class="alert alert-danger">{{ error }}</div>
     </div>
   </div>
+  <div class="row" *ngIf="!attemptingSignIn">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <form (ngSubmit)="attemptSignIn()">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" [(ngModel)]="user.email">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" [(ngModel)]="user.password">
+        </div>
+        <div class="form-group text-right">
+          <button class="btn btn-danger" (click)="goHome()">Cancel</button>
+          <button type="submit" class="btn btn-secondary">Log in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <loading *ngIf="attemptingSignIn"></loading>
 </div>

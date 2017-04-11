@@ -4,7 +4,7 @@
   "description": "A facebook like wall.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
     "test": "mocha --recursive specs/"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "@angular/compiler": "^4.0.1",
     "@angular/core": "^4.0.1",
     "@angular/forms": "^4.0.1",
+    "@angular/http": "^4.0.1",
     "@angular/platform-browser": "^4.0.1",
     "@angular/platform-browser-dynamic": "^4.0.1",
     "body-parser": "^1.17.1",
@@ -48,6 +49,7 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "nock": "^9.0.11",
+    "supertest": "^3.0.0",
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
     "webpack": "^2.3.3"
