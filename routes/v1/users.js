@@ -74,7 +74,11 @@ usersRouter.post('/user/signup', (rq, rs) => {
                     return rs.status(422).send(_processJoiValidationError(err));
                   }
 
-                  rs.status(500).send("Something went wrong while creating your account. Please try again.");
+                  if ((/unique/i).test(err.message)) {
+                    return rs.status(403).send('It appears you already have an account or are trying to use someone elses email. Naugthy human... ;)');
+                  }
+
+                  rs.status(500).send('Something went wrong while creating your account. Please try again.');
                 });
 });
 
