@@ -29,15 +29,11 @@ export class SigninComponent {
     });
   }
 
-  private attemptingSignIn: Boolean = false;
-
   attemptSignIn() : void {
-    this.attemptingSignIn = true;
     this.userService.signin(this.user)
                     .then(_ => window.location.href = '/')
                     .catch((rs) => {
                       this.errors = [];
-                      this.attemptingSignIn = false;
                       if (rs.status === 422) {
                         return this.notifyMultipleErrors(rs.json());
                       }

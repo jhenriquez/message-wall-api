@@ -45,9 +45,11 @@ export class SignupComponent {
       if (rs.status ===  422) {
         return this.notifyMultipleErrors(rs.json());
       }
-
-
       this.errors.push(rs._body);
     });
+  }
+
+  goHome () : void {
+    window.location.href = '/';
   }
 }

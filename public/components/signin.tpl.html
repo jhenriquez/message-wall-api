@@ -9,7 +9,7 @@
       <div class="alert alert-danger">{{ error }}</div>
     </div>
   </div>
-  <div class="row" *ngIf="!attemptingSignIn">
+  <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
       <form (ngSubmit)="attemptSignIn()">
         <div class="form-group">
@@ -21,11 +21,10 @@
           <input type="password" name="password" class="form-control" [(ngModel)]="user.password">
         </div>
         <div class="form-group text-right">
-          <button class="btn btn-danger" (click)="goHome()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="goHome()">Cancel</button>
           <button type="submit" class="btn btn-secondary">Log in</button>
         </div>
       </form>
     </div>
   </div>
-  <loading *ngIf="attemptingSignIn"></loading>
 </div>
