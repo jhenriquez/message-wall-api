@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { WallMessage }       from '../models/WallMessage';
 import { UserService }       from '../services/user.service';
 import { MessageService }    from '../services/message.service';
+import { User }              from '../models/User';
 
 @Component({
   selector: 'application-shell',
@@ -20,6 +22,7 @@ export class ApplicationShellComponent implements OnInit {
     private isLoadingMessages = true;
 
     messages: WallMessage[];
+    currentUser: User;
 
     ngOnInit(): void {
 
@@ -27,6 +30,7 @@ export class ApplicationShellComponent implements OnInit {
                       .then(user => {
                         this.canPublishMessages = true;
                         this.isLoadingUser = false;
+                        this.currentUser = user;
                       }).catch(rs => {
                         this.noUser = true;
                         this.isLoadingUser = false;

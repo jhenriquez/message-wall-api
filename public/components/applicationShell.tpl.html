@@ -1,7 +1,7 @@
 <div>
   <loading *ngIf="isLoadingUser"></loading>
   <user-required *ngIf="noUser"></user-required>
-  <publish-message *ngIf="canPublishMessages"></publish-message>
+  <publish-message *ngIf="canPublishMessages" [gravatarHash]="currentUser.emailHash"></publish-message>
   <br/>
   <loading *ngIf="isLoadingMessages"></loading>
   <div *ngIf="messages && messages.length">
