@@ -8,22 +8,27 @@ const cookiedAgent     = request.agent(server);
 
 describe('routes/users', () => {
 
-  const testSubject = {
-    name: 'Test User',
-    email: 'vunoridebe@10host.top',
-    password: 'SomePassword'
-  };
+  const createTestSubject = (() => {
+    let counter = 0;
+    return () => {
+      return {
+        name: 'Test User',
+        email: `vunoridebe${++counter}@10host.top`,
+        password: 'SomePassword'
+      };
+    };
+  })();
 
   describe('POST /api/v1/user/signup', () => {
 
     beforeEach(() => {
       nock('https://api.mailgun.net:443', {"encodedQueryParams":true})
-        .post(`/v3/${process.env.MAILGUN_DOMAIN}/messages`, "from=welcome%40thoughtwall.io&to=vunoridebe%4010host.top&subject=Test%20User%2C%20Welcome!&html=%3Ch1%3EWelcome%3C%2Fh1%3E%3Cp%3ETest%20User%2C%20we%20are%20glad%20to%20have%20you%20here.%20Now%20you%20can%20start%20posting.%3C%2Fp%3E")
+        .post(`/v3/${process.env.MAILGUN_DOMAIN}/messages`)
         .reply(200, {"id":`<20170407202418.8774.53903.7395BB4B@${process.env.MAILGUN_DOMAIN}>`,"message":"Queued. Thank you."});
     });
 
     it('it resolves to a newly created user and provides success metadata.', () => {
-
+      let testSubject = createTestSubject();
       return request(server)
               .post('/api/v1/user/signup')
               .send(testSubject)
@@ -48,7 +53,7 @@ describe('routes/users', () => {
   });
 
   describe('GET /api/v1/user', () => {
-
+    let testSubject = createTestSubject();
     before(() => {
       return new RegisterAccount(new UserRepository()).execute(testSubject);
     });
@@ -78,6 +83,7 @@ describe('routes/users', () => {
 
     describe('POST /api/v1/user/authenticate', () => {
       it('should populate the connect.sid cookie.', () => {
+
         return cookiedAgent
                     .post('/api/v1/user/authenticate')
                     .send({ email: testSubject.email, password: testSubject.password })

@@ -12,7 +12,7 @@ describe('users/UserRepository', () => {
   before(() => {
     return new RegisterAccount(new UserRepository()).execute({
       name: 'Some Test User',
-      email: 'test@email.com',
+      email: 'test-user-repository@email.com',
       password: 'some-password'
     }).then((user) => existingUser = user);
   });
@@ -23,7 +23,7 @@ describe('users/UserRepository', () => {
       chai.expect(() => new UserRepository().findById('')).to.throw(Error, /id/);
     });
 
-    it('resolves to null if the no user is matched.', () => {
+    it('resolves to null if no user is matched.', () => {
       return new UserRepository().findById('SomethingNotAnID')
                                  .then((user) => {
                                     chai.expect(user).to.be.null;
