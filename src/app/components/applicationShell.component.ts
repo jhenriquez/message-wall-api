@@ -36,5 +36,11 @@ export class ApplicationShellComponent implements OnInit {
                         this.isLoadingUser = false;
                       });
 
+
+      this.messageService.getMessages()
+                         .then(messages => {
+                            this.messages = messages;
+                            this.isLoadingMessages = false;
+                         });
     }
 }
