@@ -8,6 +8,7 @@ const messagesRouter = express.Router();
 const MessageRepository = require('../../lib/messages/messageRepository');
 const RetrieveMessages  = require('../../lib/messages/retrieveMessages');
 const StoreMessage      = require('../../lib/messages/storeMessage');
+const isAuthenticated   = require('./common/authenticated');
 
 
 const bypassSuccessValue = (rs, messages) => {
@@ -17,13 +18,19 @@ const bypassSuccessValue = (rs, messages) => {
 messagesRouter.get('/messages', (rq, rs) => {
   new RetrieveMessages(new MessageRepository())
                 .execute()
-                .then(bypassSuccessValue.bind(this, rs));
+                .then(bypassSuccessValue.bind(this, rs))
+                .catch(console.log.bind(console));
 });
 
-messagesRouter.post('/message', (rq, rs) => {
+messagesRouter.post('/message', isAuthenticated(), (rq, rs) => {
+  let message = {
+    text: rq.body.text,
+    author: rq.user
+  }
   new StoreMessage(new MessageRepository())
-                .execute(rq.body)
-                .then(bypassSuccessValue.bind(this, rs));
+                .execute(message)
+                .then(bypassSuccessValue.bind(this, rs))
+                .catch(console.log.bind(console));
 });
 
 

@@ -13,4 +13,11 @@ export class MessageService {
               .toPromise()
               .then(rs => rs.json() as WallMessage[]);
   }
+
+  publish(messageText: String) : Promise<WallMessage> {
+    return this.http
+              .post('/api/v1/message', { text: messageText })
+              .toPromise()
+              .then(rs => rs.json() as WallMessage);
+  }
 }

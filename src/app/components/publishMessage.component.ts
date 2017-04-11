@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { MessageService }   from '../services/message.service';
+import { Component, Input }                  from '@angular/core';
+import { MessageService }                    from '../services/message.service';
+import { ApplicationShellObservableService } from '../services/applicationShellObservable.service';
+import { WallMessage }                       from '../models/WallMessage';
 
 @Component({
   selector: 'publish-message',
@@ -8,12 +10,24 @@ import { MessageService }   from '../services/message.service';
 })
 export class PublishMessageComponent {
 
-  constructor (private messageService: MessageService) {}
+  constructor (
+    private messageService: MessageService,
+    private messagesObservable: ApplicationShellObservableService
+  ) {}
 
-  message: String;
+  error: String;
+  messageText: String;
   @Input() gravatarHash: String;
 
-  publish () {
+  private propagateAndClear (message: WallMessage) {
+    this.messagesObservable.publishMessage(message);
+    this.error = '';
+    this.messageText = '';
+  }
 
+  publish () {
+    this.messageService.publish(this.messageText)
+                       .then(this.propagateAndClear.bind(this))
+                       .catch(err => this.error = err.message);
   }
 }

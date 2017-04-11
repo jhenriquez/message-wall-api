@@ -4,8 +4,15 @@
       <img src="https://gravatar.com/avatar/{{gravatarHash}}?s=200" class="avatar-image img-fluid" />
     </div>
     <div class="col-xs-12 col-sm-12 col-md-10">
-      <textarea id="message-box" class="form-control noresize" [(ngModel)]="message" placeholder="Leave a message for the future generations!"></textarea>
+      <textarea id="message-box" class="form-control noresize" [(ngModel)]="messageText" placeholder="Leave a message for the future generations!"></textarea>
       <button id="publish-message-action" class="btn btn-secondary pull-right" (click)="publish()">Publish</button>
     </div>
   </div>
+  <br />
+  <div class="row" *ngIf="error">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="alert alert-danger">{{ error }}</div>
+    </div>
+  </div>
+  <br />
 </div>
