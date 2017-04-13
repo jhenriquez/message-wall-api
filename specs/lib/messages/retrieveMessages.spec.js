@@ -51,18 +51,15 @@ describe('messages/retrieveMessages', () => {
       return Q.all([
         newCountedMessage(),
         newCountedMessage(),
-        newCountedMessage(),
-        newCountedMessage(),
-        newCountedMessage(),
         newCountedMessage()
       ]);
     });
 
-    it('should resolve to 6 messages', () => {
+    it('should resolve to 3 messages', () => {
       return retrieveMessages.execute()
                              .then(messages => {
                                 messages.should.be.an.instanceOf(Array);
-                                messages.should.have.length(6);
+                                messages.should.have.length(3);
                              });
     });
 
@@ -71,6 +68,16 @@ describe('messages/retrieveMessages', () => {
                              .then(messages => {
                                 messages.forEach((m, i) => {
                                   m.text.should.eql(`This is message #${messages.length-i}`);
+                                });
+                             });
+    });
+
+    it('should replace _id fields for id fields', () => {
+      return retrieveMessages.execute()
+                             .then(ms => {
+                                ms.forEach((m) => {
+                                  m.should.not.have.a.property('_id');
+                                  m.should.have.a.property('id');
                                 });
                              });
     });
