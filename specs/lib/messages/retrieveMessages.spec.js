@@ -39,7 +39,8 @@ describe('messages/retrieveMessages', () => {
       return (author) => {
         return {
           text: `This is message #${++counter}`,
-          author: author
+          author: author,
+          createdAt: Date.now() + counter
         };
       };
     })();
@@ -50,15 +51,18 @@ describe('messages/retrieveMessages', () => {
       return Q.all([
         newCountedMessage(),
         newCountedMessage(),
+        newCountedMessage(),
+        newCountedMessage(),
+        newCountedMessage(),
         newCountedMessage()
       ]);
     });
 
-    it('should resolve to 3 messages', () => {
+    it('should resolve to 6 messages', () => {
       return retrieveMessages.execute()
                              .then(messages => {
                                 messages.should.be.an.instanceOf(Array);
-                                messages.should.have.length(3);
+                                messages.should.have.length(6);
                              });
     });
 
