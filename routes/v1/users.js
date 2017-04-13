@@ -13,29 +13,17 @@ const isAuthenticated  = require('./common/authenticated');
 
 
 /*
- *  Helper functions that transforms a Joi validation error into
- *  object holding the failing attribute as key, and the error message as value.
+ * Extracts the friendly message from a Joi validation error.
+ *
+ * Remarks: This extracts the first error message. Assuming Joi is configured to abort early.
  */
 
-const _chooseValidationMessage = (type, path, def) => {
-  switch(type) {
-    case 'any.required':
-      return `${path} is required.`;
-    break;
-    default:
-      return def;
-  }
-};
-
-const _processJoiValidationError = (err) => {
-  return err.details.reduce((r, e) => {
-    return r[e.path] = _chooseValidationMessage(e.type, e.path, e.message), r;
-  }, {});
-};
+const extractFriendlyMessage = (err) => err.details.shift().message;
 
 /*
  * Helper function that takes a user, authenticates it on the request and pass it along the promise chain.
  */
+
 const loginAndBypassUser = (rq, user) => {
   return Q.ninvoke(rq, 'login', user).then(_ => user);
 };
@@ -43,6 +31,7 @@ const loginAndBypassUser = (rq, user) => {
 /*
  * Short hand function to to send over a 200 status code with a given value resolved from the promise chain.
  */
+
 const bypassSuccessUser = (rs, user) => {
   rs.status(200).send(user);
 };
@@ -71,7 +60,7 @@ usersRouter.post('/user/signup', (rq, rs) => {
                 .then(bypassSuccessUser.bind(this, rs))
                 .catch((err) => {
                   if (err.isJoi) {
-                    return rs.status(422).send(_processJoiValidationError(err));
+                    return rs.status(422).send(extractFriendlyMessage(err));
                   }
 
                   if ((/unique/i).test(err.message)) {
@@ -89,7 +78,7 @@ usersRouter.post('/user/authenticate', (rq, rs) => {
         .then(bypassSuccessUser.bind(this, rs))
         .catch((err) => {
           if (err.isJoi) {
-            return rs.status(422).send(_processJoiValidationError(err));
+            return rs.status(422).send(extractFriendlyMessage(err));
           }
 
           if ((/invalid/i).test(err.message)) {

@@ -40,13 +40,14 @@ describe('routes/users', () => {
               });
     });
 
-    it('rejects to an object holding Attrbute/Error value on validation errors.', () => {
+    it('rejects to a single error message and a status code (422) on validation errors.', () => {
       return request(server)
               .post('/api/v1/user/signup')
               .send({})
               .expect(422)
               .then(rs => {
-                rs.body.name.should.match(/required/);
+                rs.body.should.eql({});
+                rs.text.should.match(/name/);
               });
     });
 

@@ -4,8 +4,8 @@
       <h1>Sign in to your account</h1>
     </div>
   </div>
-  <div class="row" *ngIf="errors.length">
-    <div class="col-xs-12 col-sm-12 cols-md-12" *ngFor="let error of errors">
+  <div class="row" *ngIf="error">
+    <div class="col-xs-12 col-sm-12 cols-md-12">
       <div class="alert alert-danger">{{ error }}</div>
     </div>
   </div>
