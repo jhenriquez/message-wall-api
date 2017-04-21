@@ -1,7 +1,7 @@
 {
-  "name": "thought_well",
+  "name": "messages-wall-api",
   "version": "0.0.1",
-  "description": "A facebook like wall.",
+  "description": "A basic api that provides authentication and authorization for message and user resoruces.",
   "main": "app.js",
   "scripts": {
     "start": "node index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jhenriquez/thought_well.git"
+    "url": "git+https://github.com/jhenriquez/messages-wall-api.git"
   },
   "keywords": [
     "Wall",
@@ -19,9 +19,9 @@
   "author": "Julio Henriquez <julio.m.henriquez@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jhenriquez/thought_well/issues"
+    "url": "https://github.com/jhenriquez/messages-wall-api/issues"
   },
-  "homepage": "https://github.com/jhenriquez/thought_well#readme",
+  "homepage": "https://github.com/jhenriquez/messages-wall-api#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "dotenv": "^4.0.0",
