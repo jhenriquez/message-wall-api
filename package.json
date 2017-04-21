@@ -42,6 +42,7 @@
     "passport-local": "^1.0.0",
     "q": "^1.5.0",
     "reflect-metadata": "^0.1.10",
+    "rescue-error": "0.0.6",
     "rxjs": "^5.3.0",
     "zone.js": "^0.8.5"
   },

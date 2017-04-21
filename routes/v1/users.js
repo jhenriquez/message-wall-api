@@ -2,6 +2,7 @@
  * Users resource API endpoints definition.
  */
 const Q           = require('q');
+const { Rescue }  = require('rescue-error');
 const express     = require('express');
 const usersRouter = express.Router();
 
@@ -59,15 +60,12 @@ usersRouter.post('/user/signup', (rq, rs) => {
                 .then(loginAndBypassUser.bind(this, rq))
                 .then(bypassSuccessUser.bind(this, rs))
                 .catch((err) => {
-                  if (err.isJoi) {
-                    return rs.status(422).send(extractFriendlyMessage(err));
-                  }
 
-                  if ((/unique/i).test(err.message)) {
-                    return rs.status(403).send('It appears you already have an account or are trying to use someone elses email. Naugthy human... ;)');
-                  }
-
-                  rs.status(500).send('Something went wrong while creating your account. Please try again.');
+                  new Rescue(err)
+                        .ifAttribute('isJoi', _ => rs.status(422).send(extractFriendlyMessage(err)))
+                        .ifMessage(/unique/i, _ => rs.status(403).send('It appears you already have an account or are trying to use someone elses email. Naugthy human... ;)'))
+                        .default(_ => rs.status(500).send('Something went wrong while creating your account. Please try again.'))
+                        .do();
                 });
 });
 
@@ -77,15 +75,12 @@ usersRouter.post('/user/authenticate', (rq, rs) => {
         .then(loginAndBypassUser.bind(this, rq))
         .then(bypassSuccessUser.bind(this, rs))
         .catch((err) => {
-          if (err.isJoi) {
-            return rs.status(422).send(extractFriendlyMessage(err));
-          }
 
-          if ((/invalid/i).test(err.message)) {
-            return rs.status(401).send('Invalid Credentials');
-          }
-
-          rs.status(500).send('Soemthing went wrong attempting sign in. Please try again.');
+          new Rescue(err)
+                .ifAttribute('isJoi', _ => rs.status(422).send(extractFriendlyMessage(err)))
+                .ifMessage(/invalid/i, _ => rs.status(422).send(extractFriendlyMessage(err)))
+                .default(_ => rs.status(500).send('Soemthing went wrong attempting sign in. Please try again.'))
+                .do();
         });
 });
 
